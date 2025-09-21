@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Safwat Ali Khan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+            .paper {
+                text-align: justify;
+                text-justify: inter-word; /* For better spacing between words */
+                margin-bottom: 20px; /* Adds spacing between papers */
+            }
+
+            .paper h2 {
+                text-align: left; /* Left-align the titles */
+            }
+
+            .paper p {
+                text-align: justify;
+                text-justify: inter-word;
+            }
+			/*Style experiment*/
+			.content {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .content h2 {
+            color: #007bff;
+        }
+
+        .content ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        .content p {
+            margin: 0 0 15px 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="images/logo.svg" alt="" /></span>
+						<h1>Safwat Ali Khan</h1>
+						<p>Hi, I am Safwat, PhD student at George Mason University.
+						</p>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#intro" class="active" onclick="showSection('intro')">Introduction</a></li>
+							<li><a href="#zeroth" onclick="showSection('zeroth')">Publications</a></li>
+							<li><a href="#first" onclick="showSection('first')">Education</a></li>
+							<li><a href="#second" onclick="showSection('second')">Work Experience</a></li>
+							<li><a href="#cta" onclick="showSection('cta')">Contact</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+							<section id="intro" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>Introduction</h2>
+										</header>
+										<p class="abstract">Hi, I am Safwat, PhD student in Computer Science at George Mason University.
+											Currently I am working at <a href="https://sagelab.io/">Sage Research Lab</a> led by Dr. <a href="https://www.kpmoran.com/" target="_blank" rel="noopener noreferrer">Kevin Moran</a>. 
+											My research interests are Mobile GUI Test Automation and Smart home testing. <br />
+
+                                        </p>
+									</div>
+									<span class="image"><img src="images/safwat2.jpg" alt="" /></span>
+								</div>
+							</section>
+						<!-- Zeroth Section -->
+						<section id="zeroth" class="main">
+							<header class="major">
+								<h2>Publications</h2>
+							</header>
+					
+							<div class="paper">
+								<h2>AURORA: Navigating UI Tarpits via Automated Neural Screen Understanding</h2>
+								<p class="venue">Venue: 17th IEEE International Conference on Software Testing, Verification and Validation (ICST) 2024 · Apr 1, 2024</p>
+								<p class="url"><a href="https://conf.researchr.org/details/icst-2024/icst-2024-papers/4/AURORA-Navigating-UI-Tarpits-via-Automated-Neural-Screen-Understanding" target="_blank" rel="noopener noreferrer">AURORA - ICST</a> </p>
+								<p class="abstract">
+									
+									<span class="more-text" style="display:none;">Abstract: Nearly a decade of research in software engineering has focused on automating mobile app testing to help engineers in overcoming the unique challenges associated with the software platform. Much of this work has come in the form of Automated Input Generation tools (AIG tools) that dynamically explore app screens. However, such tools have repeatedly been demonstrated to achieve lower-than-expected code coverage - particularly on sophisticated proprietary apps. Prior work has illustrated that a primary cause of these coverage deficiencies is related to so-called tarpits, or complex screens that are difficult to navigate. In this paper, we take a critical step toward enabling AIG tools to effectively navigate tarpits during app exploration through a new form of automated semantic screen understanding. We introduce AURORA, a technique that learns from the visual and textual patterns that exist in mobile app UIs to automatically detect common screen designs and navigate them accordingly. The key idea of AURORA is that there are a finite number of mobile app screen designs, albeit with subtle variations, such that the general patterns of different categories of UI designs can be learned. As such, AURORA employs a multi-modal, neural screen classifier that is able to recognize the most common types of UI screen designs. After recognizing a given screen, it then applies a set of flexible and generalizable heuristics to properly navigate the screen. We evaluated AURORA both on a set of 12 apps with known tarpits from prior work, and on a new set of five of the most popular apps from the Google Play store. Our results indicate that AURORA is able to effectively navigate tarpit screens, outperforming prior approaches that avoid tarpits by 19.6% in terms of method coverage. The improvements can be attributed to AURORA's UI design classification and heuristic navigation techniques.</span>
+									
+								</p>
+								<button class="see-more" onclick="toggleAbstract(this)">See Abstract</button>
+
+								
+							
+							</div>
+							<div class="paper">
+								<h2>On Using GUI Interaction Data to Improve Text Retrieval-based Bug Localization</h2>
+								<p class="venue">Venue: Proceedings of the 46th IEEE/ACM International Conference on Software Engineering · Feb 6, 2024</p>
+								<p class="url"><a href="https://dl.acm.org/doi/abs/10.1145/3597503.3608139" target="_blank" rel="noopener noreferrer">Bug Localization - ICSE</a> </p>
+								<p class="abstract">
+									<span class="more-text" style="display:none;">Abstract: One of the most important tasks related to managing bug reports is localizing the fault so that a fix can be applied. As such, prior work has aimed to automate this task of bug localization by formulating it as an information retrieval problem, where potentially buggy files are retrieved and ranked according to their textual similarity with a given bug report. However, there is often a notable semantic gap between the information contained in bug reports and identifiers or natural language contained within source code files. For user-facing software, there is currently a key source of information that could aid in bug localization, but has not been thoroughly investigated - information from the graphical user interface (GUI).
+									In this paper, we investigate the hypothesis that, for end user-facing applications, connecting information in a bug report with information from the GUI, and using this to aid in retrieving potentially buggy files, can improve upon existing techniques for text retrieval-based bug localization.</span>
+								</p>
+								<button class="see-more" onclick="toggleAbstract(this)">See Abstract</button>
+							</div>
+							<div class="paper">
+								<h2>Avgust: A Tool for Generating Usage-Based Tests from Videos of App Executions</h2>
+								<p class="venue">Venue: IEEE/ACM 45th International Conference on Software Engineering: Companion Proceedings (ICSE-Companion) · May 14, 2023</p>
+								<p class="url"><a href="https://ieeexplore.ieee.org/abstract/document/10172521" target="_blank" rel="noopener noreferrer">AVGUST (Tool) - ICSE</a> </p>
+
+								<p class="abstract">
+									<span class="more-text" style="display:none;">Abstract: Creating UI tests for mobile applications is a difficult and time-consuming task. As such, there has been a considerable amount of work carried out to automate the generation of mobile tests-largely focused upon the goals of maximizing code coverage or finding crashes. However, comparatively fewer automated techniques have been proposed to generate a highly sought after type of test: usage-based tests. These tests exercise targeted app functionalities for activities such as regression testing. In this paper, we present the Avgusttool for automating the construction of usage-based tests for mobile apps. Avgustlearns usage patterns from videos of app executions collected by beta testers or crowd-workers, translates these into an app-agnostic state-machine encoding, and then uses this encoding to generate new test cases for an unseen target app. We evaluated Avguston 374 videos of use cases from 18 popular apps and found that it can successfully exercise the desired usage in 69% of the tests.</span>
+								</p>
+								<button class="see-more" onclick="toggleAbstract(this)">See Abstract</button>	
+							</div>
+							<div class="paper">
+								<h2>Avgust: Automating usage-based test generation from videos of app executions</h2>
+								<p class="venue">Venue: Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering · Nov 7, 2022</p>
+								<p class="url"><a href="https://dl.acm.org/doi/abs/10.1145/3540250.3549134" target="_blank" rel="noopener noreferrer">AVGUST - ESEC/FSE</a> </p>
+
+								<p class="abstract">
+									<span class="more-text" style="display:none;">Abstract: Writing and maintaining UI tests for mobile apps is a time-consuming and tedious task. While decades of research have produced auto- mated approaches for UI test generation, these approaches typically focus on testing for crashes or maximizing code coverage. By contrast, recent research has shown that developers prefer usage-based tests, which center around specific uses of app features, to help support activities such as regression testing. Very few existing techniques support the generation of such tests, as doing so requires automating the difficult task of understanding the semantics of UI screens and user inputs. In this paper, we introduce Avgust, which automates key steps of generating usage-based tests. Avgust uses neural models for image understanding to process video recordings of app uses to synthesize an app-agnostic state-machine encoding of those uses. Then, Avgust uses this encoding to synthesize test cases for a new target app. We evaluate Avgust on 374 videos of common uses of 18 popular apps and show that 69% of the tests Avgust generates successfully execute the desired usage, and that Avgust’s classifiers outperform the state of the art.</span>
+								</p>
+								<button class="see-more" onclick="toggleAbstract(this)">See Abstract</button>	
+							</div>
+							<div class="paper">
+								<h2>Energy-Efficient Methods to Maximize Network Lifetime in Wireless Sensor Networks with Adjustable Sensing Ranges</h2>
+								<p class="venue">Venue: International Journal of Computer and Information Technology (IJCIT - 2014) ISSN: 2279 - 0764</p>
+								<p class="url"><a href="https://www.ijcit.com/archives/volume3/issue4/Paper030409.pdf" target="_blank" rel="noopener noreferrer">Energy-Efficient Methods to Maximize Network Lifetime - IJCIT</a> </p>
+
+								<p class="abstract">
+									<span class="more-text" style="display:none;">Abstract: We study the target coverage problem for wireless sensor networks where every sensor node is capable of adjusting its sensing range. Our aim is to increase the network lifetime by increasing the number of cover sets as many as possible. A cover set is a subset of all sensor nodes that can cover every target node. Instead of keeping all the sensor nodes active at once, network lifetime can be extended by generating a number of 	cover sets that will monitor the network in turn. We develop two polynomial time algorithms that utilize an efficient contribution formula on circular lists of sensor nodes for building a variety of cover sets. Our proposed algorithms find maximum number of cover sets and consume as low energy as possible for each sensor node. Our simulation results exhibit that the proposed algorithms outperform existing ARSC [1] algorithm in terms of number of cover sets while conserving significant amount of energy among the sensor nodes.</span>
+								</p>
+								<button class="see-more" onclick="toggleAbstract(this)">See Abstract</button>
+							</div>
+					
+						</section>
+						<!-- First Section -->
+							<section id="first" class="main special">
+								<header class="major">
+									<h2>Education</h2>
+								</header>
+								<ul class="features">
+									<li>
+										<span class="image"><img src="images/du.jpg" alt="" /></span>
+										<h3><b>Undergraduate</b></h3>
+										<p><a href="https://www.du.ac.bd/" target="_blank" rel="noopener noreferrer">University of Dhaka</a><br> Dhaka, Bangladesh<br>
+                                        Major: Computer Science & Engineering<br>
+                                        Degree: Bachelor of Science<br>
+                                        Timeline: 2010 - 2014</p>
+									</li>
+									<li>
+										<span class="image"><img src="images/gmu.png" alt="" /></span>
+										<h3><b>Graduate</b></h3>
+										<p><a href="https://www2.gmu.edu/" target="_blank" rel="noopener noreferrer">George Mason University</a><br> VA, USA<br>  
+                                        Major: Computer Science <br>
+                                        Degree: Doctor of Philosophy<br>
+                                        Timeline: 2019 - present</p>
+									</li>
+								</ul>
+								
+							</section>
+
+						<!-- Second Section -->
+							<section id="second" class="main special">
+								<header class="major">
+									<h2>Work Experience</h2>
+								</header>
+								<ul class="0">
+                                    <li class="style4">
+										
+										<strong><a href="https://www2.gmu.edu/" target="_blank" rel="noopener noreferrer">George Mason University</a></strong> Graduate Assistant (2019 - present) 
+									</li>
+                                
+									
+									<li class="style2">
+										
+										<strong><a href="https://www.therapservices.net/" target="_blank" rel="noopener noreferrer">Therap Services</a></strong> Software Engineer II (QA) (2018-2019)
+									</li>
+									<li class="style3">
+										
+										<strong><a href="https://www.relisource.com/" target="_blank" rel="noopener noreferrer">Relisource Technologies Ltd.</a></strong> SQA Engineer (2015-2018)
+									</li>
+									<li class="style4">
+										
+										<strong><a href="https://www.mpower-social.com/" target="_blank" rel="noopener noreferrer">mPower Social Enterprises</a></strong> Jr. SQA Engineer (2014-2015)
+									</li>
+								</ul>
+								<p class="content">As a research assistant working with Professor Kevin Moran, I am involved in the development of AI-enhanced technologies designed to advance mobile UI testing. This role has given me the opportunity to work with cutting-edge techniques in artificial intelligence and machine learning to improve the efficiency and accuracy of user interface testing for mobile applications. Currently, my research emphasizes exploring the capabilities and potential applications of large language models in this domain. I am investigating how these models can be harnessed to better understand and predict UI elements, automate test case generation, and enhance overall testing strategies. <br>
+
+									In addition to my work on mobile UI testing, I have actively contributed to various other projects. One area of focus has been bug localization, where I have worked on methods to improve the localizatoin of mobile bugs through advanced analysis techniques. I have also been involved in a smart home testing project, where we investigate open source repositories to understand current practice in smart home testing, the lackings and future scopes thereof. I am also focused on visualizing the landscape of accessibility techniques that have been developed for mobile applications. This project involves mapping out and analyzing various methods to enhance accessibility, providing insights into their effectiveness and adoption.
+
+									Additionally, I am exploring the role of creativity in visualization design. This project aims to understand how innovative approaches and creative strategies can influence and improve the effectiveness of visualizations, ultimately enhancing user engagement and data interpretation. <br> <br>
+									
+
+									In my role as a Graduate Teaching Assistant, I have supported several courses, including CS-222 (Computer Programming for Engineers), CS-262 (Introduction to Low-Level Programming), CS-550 (Database Systems), and CS-310 (Data Structures). This experience has honed my mentoring abilities, as I worked closely with students to enhance their understanding of lab activities and projects. It also improved my time management skills, balancing research responsibilities with teaching duties.<br> <br>									
+									During the summer of 2020, I served as a co-mentor for the Aspired Scientists' Summer Internship Program, working with Professor Thomas LaToza. I guided two undergraduate students on the project "AI Enhanced Presentation Helper." <br> <br>
+									
+									Prior to my current role, I spent five years as a Software Test Engineer in Bangladesh. I worked on a range of software solutions, focusing on healthcare for individuals with developmental disabilities and central nervous system conditions (e.g., ADHD, Alzheimer’s). My interest in software automation led me to utilize advanced tools such as Selenium, JMeter, JUnit, and Xamarin Test Cloud to streamline testing processes. </p> 
+								
+							</section>
+
+						<!-- Get Started -->
+							<section id="cta" class="main special">
+								<header class="major">
+									<h2>Contact</h2>
+									<p><a href="mailto:skhan89@gmu.edu" target="_blank" rel="noopener noreferrer">skhan89@gmu.edu</a><br>
+                                    Department of Computer Science<br>
+                                    George Mason University<br>
+                                    4400 University Drive<br>
+                                    Fairfax, VA 22030, United States
+                                    </p>
+								</header>
+								
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						
+							<ul class="icons" align="left">
+								<li><a href="https://twitter.com/safwatalikhan" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
+								<li><a href="https://github.com/safwatalikhan" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/safwat-ali-khan/" class="icon brands fa-linkedin alt"><span class="label">LinkedIn</span></a></li>
+							</ul>
+						</section>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			 <!-- Scripts -->
+			 <script src="assets/js/jquery.min.js"></script>
+			 <script src="assets/js/jquery.scrollex.min.js"></script>
+			 <script src="assets/js/jquery.scrolly.min.js"></script>
+			 <script src="assets/js/browser.min.js"></script>
+			 <script src="assets/js/breakpoints.min.js"></script>
+			 <script src="assets/js/util.js"></script>
+			 <script src="assets/js/main.js"></script>
+			 
+			 <script>
+				 // Function to show only the selected section and hide the others
+				 function showSection(sectionId) {
+					 // Hide all sections
+					 var sections = document.querySelectorAll('.main');
+					 sections.forEach(function(section) {
+						 section.style.display = 'none';
+					 });
+	 
+					 // Display the clicked section
+					 var selectedSection = document.getElementById(sectionId);
+					 if (selectedSection) {
+						 selectedSection.style.display = 'block';
+					 }
+	 
+					 // Update active class in nav
+					 var navLinks = document.querySelectorAll('#nav a');
+					 navLinks.forEach(function(link) {
+						 link.classList.remove('active');
+					 });
+					 document.querySelector('#nav a[href="#' + sectionId + '"]').classList.add('active');
+				 }
+				 function toggleAbstract(button) {
+					const moreText = button.previousElementSibling.querySelector('.more-text');
+					
+					if (moreText.style.display === 'none') {
+						moreText.style.display = 'inline';
+						button.textContent = 'Hide Abstract';
+					} else {
+						moreText.style.display = 'none';
+						button.textContent = 'See Abstract';
+					}
+    			}
+				 // Show the introduction section by default when the page loads
+				 document.addEventListener("DOMContentLoaded", function() {
+					 showSection('intro');
+				 });
+			 </script>
+
+	</body>
+</html>
