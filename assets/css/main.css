@@ -3638,7 +3638,17 @@ input, select, textarea {
 }
 
 .publication p strong {
-    color: #FFFFFF; /* White highlight for your name */
+	color: #FFFFFF; /* White highlight for your name */
+}
+
+/* Callouts */
+
+.callout {
+	padding: 1.25em 1.5em;
+	border-left: 4px solid #8cc9f0;
+	background: rgba(140, 201, 240, 0.12);
+	border-radius: 8px;
+	margin-top: 1.5em;
 }
 
 /* Ensuring images are responsive */
