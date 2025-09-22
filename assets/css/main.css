@@ -2187,14 +2187,14 @@ input, select, textarea {
 			border-radius: 100%;
 		}
 
-			.icon.alt:before {
-				display: block;
-				font-size: 1.25em;
-				width: 2em;
-				height: 2em;
-				text-align: center;
-				line-height: 2em;
-			}
+		.icon.alt:before {
+			display: block;
+			font-size: 1.25em;
+			width: 2em;
+			height: 2em;
+			text-align: center;
+			line-height: 2em;
+		}
 
 		.icon.style1 {
 			color: #efa8b0;
@@ -2512,6 +2512,17 @@ input, select, textarea {
 			ul.icons li:last-child {
 				padding-right: 0 !important;
 			}
+
+	#header .social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 1.25rem;
+	}
+
+	#header .social-links li {
+		padding: 0;
+	}
 
 /* Section/Article */
 
