@@ -3629,7 +3629,7 @@ input, select, textarea {
 .publication p {
     margin: 5px 0;
     font-size: 1em;
-    color: #E0E0E0; /* Light gray for readability */
+    color: #b3b0b0; /* Light gray for readability */
 }
 
 .publication p em {
