@@ -3640,7 +3640,12 @@ input, select, textarea {
 .publication p strong {
 	color: #FFFFFF; /* White highlight for your name */
 }
-
+/* Remove list bullets for specific elements */
+.no-bullets {
+	list-style: none;
+	padding-left: 0;
+	margin: 0;
+}
 /* Callouts */
 
 .callout {
