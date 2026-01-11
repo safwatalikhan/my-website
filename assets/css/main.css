@@ -2396,6 +2396,22 @@ input, select, textarea {
 	dl dt {
 		color: #ffffff;
 	}
+/* Education section: image left, text below, left-aligned */
+#first ul.features li {
+    text-align: left;
+}
+
+/* Keep image left-aligned */
+#first ul.features li .image {
+    display: block;
+    margin: 0 0 1em 0; /* space below image */
+}
+
+/* Ensure text stays left-aligned */
+#first ul.features li h3,
+#first ul.features li p {
+    text-align: left;
+}
 
 /* Actions (commented out: Action button list unused)
 
