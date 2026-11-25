@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portrait cropper — safwat5.jpg</title>
+<style>
+  :root { --line:#dcdcdc; --ink:#1a1a1a; --muted:#666; --accent:#1f3b63; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+         color:var(--ink); background:#f4f4f4; padding:24px; }
+  h1 { font-size:1.2rem; margin:0 0 4px; }
+  p.sub { color:var(--muted); margin:0 0 20px; font-size:.9rem; }
+  .wrap { display:flex; gap:28px; flex-wrap:wrap; align-items:flex-start; }
+  .stageCol { }
+  .stage {
+    position:relative; overflow:hidden; background:#222;
+    border:1px solid var(--line); border-radius:14px;
+    width:300px; /* frame width on screen; height set by JS from aspect */
+    touch-action:none; cursor:grab; user-select:none;
+  }
+  .stage.dragging { cursor:grabbing; }
+  .stage img { position:absolute; top:0; left:0; transform-origin:0 0; pointer-events:none;
+               -webkit-user-drag:none; }
+  .hint { color:var(--muted); font-size:.8rem; margin-top:8px; text-align:center; width:300px; }
+  .panel { min-width:260px; max-width:340px; }
+  .row { margin-bottom:18px; }
+  label { display:block; font-weight:600; font-size:.85rem; margin-bottom:8px; }
+  .ratios { display:flex; flex-wrap:wrap; gap:8px; }
+  .ratios button, .btn {
+    border:1px solid var(--line); background:#fff; color:var(--ink);
+    padding:7px 12px; border-radius:8px; cursor:pointer; font-size:.85rem;
+  }
+  .ratios button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  input[type=range] { width:100%; }
+  .out {
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size:.95rem;
+    background:#111; color:#8fe; padding:12px 14px; border-radius:8px;
+    word-break:break-all; margin-top:6px; user-select:all;
+  }
+  .btnRow { display:flex; gap:10px; margin-top:12px; }
+  .btn.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .note { font-size:.8rem; color:var(--muted); margin-top:14px; line-height:1.5; }
+  .ok { color:#2a8a2a; font-weight:600; font-size:.85rem; margin-left:8px; }
+</style>
+</head>
+<body>
+  <h1>Adjust your portrait</h1>
+  <p class="sub">Drag the photo to reposition · scroll or use the slider to zoom · pick a frame shape. The grey frame is exactly what will show on the site.</p>
+
+  <div class="wrap">
+    <div class="stageCol">
+      <div class="stage" id="stage">
+        <img id="img" alt="" />
+      </div>
+      <div class="hint">drag to move · scroll to zoom</div>
+    </div>
+
+    <div class="panel">
+      <div class="row">
+        <label>Frame shape (width : height)</label>
+        <div class="ratios" id="ratios">
+          <button data-w="2" data-h="3">2 : 3</button>
+          <button data-w="3" data-h="4">3 : 4</button>
+          <button data-w="4" data-h="5">4 : 5</button>
+          <button data-w="1" data-h="1">1 : 1 (square)</button>
+          <button data-w="5" data-h="4">5 : 4 (wide)</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Zoom</label>
+        <input type="range" id="zoom" min="1" max="4" step="0.01" value="1" />
+      </div>
+
+      <div class="row">
+        <div class="btnRow">
+          <button class="btn" id="reset">Reset</button>
+          <button class="btn" id="fit">Fit whole photo</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Paste this line back to me <span class="ok" id="copied"></span></label>
+        <div class="out" id="out">CROP …</div>
+        <div class="btnRow">
+          <button class="btn primary" id="copy">Copy</button>
+        </div>
+      </div>
+
+      <div class="note">
+        Nothing here changes any file. When the crop looks right, copy the line above
+        and send it to me — I’ll crop <b>safwat5.jpg</b> to match and update the website.
+      </div>
+    </div>
+  </div>
+
+<script>
+const IMG_SRC = "images/safwat5.jpg";
+const FRAME_W = 300; // on-screen frame width in px
+const img = document.getElementById('img');
+const stage = document.getElementById('stage');
+const zoomEl = document.getElementById('zoom');
+const out = document.getElementById('out');
+
+let nat = {w:0, h:0};           // natural image size
+let aspect = {w:2, h:3};        // frame aspect (width:height)
+let frameH = FRAME_W * aspect.h / aspect.w;
+let scale = 1;                  // display scale: css px per natural px
+let minScale = 1;               // scale at which image covers the frame
+let tx = 0, ty = 0;             // image top-left in frame coords (css px)
+
+function setFrame() {
+  frameH = FRAME_W * aspect.h / aspect.w;
+  stage.style.width = FRAME_W + 'px';
+  stage.style.height = frameH + 'px';
+}
+
+function coverScale() {
+  // smallest scale so image covers frame in both dims
+  return Math.max(FRAME_W / nat.w, frameH / nat.h);
+}
+
+function clamp() {
+  const iw = nat.w * scale, ih = nat.h * scale;
+  // keep image covering the frame (no empty gaps) when possible
+  if (iw >= FRAME_W) { tx = Math.min(0, Math.max(FRAME_W - iw, tx)); }
+  else { tx = (FRAME_W - iw) / 2; }
+  if (ih >= frameH) { ty = Math.min(0, Math.max(frameH - ih, ty)); }
+  else { ty = (frameH - ih) / 2; }
+}
+
+function render() {
+  img.style.width = nat.w + 'px';
+  img.style.height = nat.h + 'px';
+  img.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+  updateOut();
+}
+
+function updateOut() {
+  // source-pixel crop box of what the frame shows
+  const sx = Math.round((0 - tx) / scale);
+  const sy = Math.round((0 - ty) / scale);
+  const sw = Math.round(FRAME_W / scale);
+  const sh = Math.round(frameH / scale);
+  const cx = Math.max(0, sx), cy = Math.max(0, sy);
+  const cw = Math.min(nat.w - cx, sw), ch = Math.min(nat.h - cy, sh);
+  out.textContent = `CROP ${aspect.w}:${aspect.h} x=${cx} y=${cy} w=${cw} h=${ch}`;
+}
+
+function setScale(newScale, centerX, centerY) {
+  newScale = Math.max(minScale, Math.min(minScale * 4, newScale));
+  // zoom around a focal point (css coords within frame)
+  const fx = centerX ?? FRAME_W / 2;
+  const fy = centerY ?? frameH / 2;
+  const nx = fx - (fx - tx) * (newScale / scale);
+  const ny = fy - (fy - ty) * (newScale / scale);
+  scale = newScale; tx = nx; ty = ny;
+  clamp();
+  zoomEl.value = (scale / minScale).toFixed(2);
+  render();
+}
+
+function applyAspect(w, h, keep) {
+  aspect = {w, h};
+  setFrame();
+  minScale = coverScale();
+  if (!keep || scale < minScale) scale = minScale;
+  clamp();
+  zoomEl.min = 1; zoomEl.max = 4; zoomEl.value = (scale / minScale).toFixed(2);
+  render();
+}
+
+// --- interactions ---
+let drag = null;
+stage.addEventListener('pointerdown', e => {
+  drag = {x:e.clientX, y:e.clientY, tx, ty};
+  stage.classList.add('dragging'); stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener('pointermove', e => {
+  if (!drag) return;
+  tx = drag.tx + (e.clientX - drag.x);
+  ty = drag.ty + (e.clientY - drag.y);
+  clamp(); render();
+});
+stage.addEventListener('pointerup', e => { drag = null; stage.classList.remove('dragging'); });
+stage.addEventListener('pointercancel', e => { drag = null; stage.classList.remove('dragging'); });
+
+stage.addEventListener('wheel', e => {
+  e.preventDefault();
+  const r = stage.getBoundingClientRect();
+  const factor = e.deltaY < 0 ? 1.06 : 1/1.06;
+  setScale(scale * factor, e.clientX - r.left, e.clientY - r.top);
+}, {passive:false});
+
+zoomEl.addEventListener('input', () => setScale(minScale * parseFloat(zoomEl.value)));
+
+document.getElementById('ratios').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  [...e.currentTarget.children].forEach(c => c.classList.remove('active'));
+  b.classList.add('active');
+  applyAspect(+b.dataset.w, +b.dataset.h, false);
+});
+
+document.getElementById('reset').addEventListener('click', () => applyAspect(aspect.w, aspect.h, false));
+document.getElementById('fit').addEventListener('click', () => {
+  // show the whole photo inside the frame (letterboxed) — useful to see everything
+  const s = Math.min(FRAME_W / nat.w, frameH / nat.h);
+  scale = s; tx = (FRAME_W - nat.w*s)/2; ty = (frameH - nat.h*s)/2;
+  zoomEl.value = (scale/minScale).toFixed(2); render();
+});
+
+document.getElementById('copy').addEventListener('click', async () => {
+  const txt = out.textContent;
+  try { await navigator.clipboard.writeText(txt); }
+  catch (_) {
+    const r = document.createRange(); r.selectNodeContents(out);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    try { document.execCommand('copy'); } catch(e) {}
+  }
+  const ok = document.getElementById('copied'); ok.textContent = 'copied ✓';
+  setTimeout(() => ok.textContent = '', 1500);
+});
+
+img.addEventListener('load', () => {
+  nat = {w: img.naturalWidth, h: img.naturalHeight};
+  // default to the 2:3 button active
+  const first = document.querySelector('#ratios button');
+  first.classList.add('active');
+  applyAspect(2, 3, false);
+});
+img.src = IMG_SRC;
+</script>
+</body>
+</html>
