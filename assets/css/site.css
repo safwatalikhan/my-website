@@ -201,9 +201,10 @@ a:hover { text-decoration-thickness: 2px; }
 .portrait {
 	width: 100%;
 	height: auto;
-	aspect-ratio: 1 / 1;
+	aspect-ratio: 2 / 3;
 	object-fit: cover;
-	border-radius: 50%;
+	object-position: top;
+	border-radius: 14px;
 	border: 1px solid var(--line);
 	box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.45);
 }
@@ -211,7 +212,7 @@ a:hover { text-decoration-thickness: 2px; }
 @media (max-width: 760px) {
 	.hero { padding-block: 40px 36px; }
 	.hero .container { grid-template-columns: 1fr; gap: 24px; }
-	.portrait { width: 160px; order: -1; }
+	.portrait { width: 200px; order: -1; }
 }
 
 /* ---------- Sections ---------- */
